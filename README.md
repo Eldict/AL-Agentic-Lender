@@ -3,10 +3,12 @@
 Year 3 Group Project 2026
 
 ## Team
+- Roland Katona - Supervisor
 - Kian Le Roux - System Design & Documentation
 - Rebecca Lordan - Functional Specification & UI Screens
 - Eldict Koonan John - Project Report & Custom Feature
 - Dimitar Bodurov - UI Design & Prototyping
+- Roles can be switched.
 
 ## Subsystems
 - AL-Mobile (Android, Kotlin) - Borrower app
