@@ -18,7 +18,7 @@ Year 3 Group Project 2026
 Green Mortgage Smart Incentive - BER-based APR discount in smart contract
 
 ## Project Management
-Trello board: https://trello.com/invite/b/6aac0504f5aa366548887f61/ATTI6f0e7cb45d2e9055d350399c86874f387BD6D7F2/group-project
+Trello board: https://trello.com/b/A6dYXHja
 
 ## Status
 Week 3 deliverables in progress - Product backlog, Dev environment setup, Mock-up prototype
