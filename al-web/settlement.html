@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" data-role="bank">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Settlement | AL Agentic Lender Platform</title>
+<link rel="stylesheet" href="assets/css/styles.css">
+<script src="assets/js/role.js"></script>
+</head>
+<body>
+<header><div class="wrap">
+ <div class="top">
+  <div class="brand"><div class="logo">AL</div><div>AL <small>| Agentic Lender Platform</small></div></div>
+  <div class="wallet"><span class="dot"></span><span><b>Connected:</b> <span class="mono">0x71C...3A9</span></span><span class="mut">on</span><span style="color:#c4b5fd;font-weight:600">Polygon Amoy Testnet</span></div>
+ </div>
+ <div class="roles" role="group" aria-label="Role view">
+  <button type="button" data-role-btn="bank">Bank Underwriter View (Full Oversight)</button>
+  <button type="button" data-role-btn="broker">Mortgage Broker View (Referred Clients Only)</button>
+ </div>
+ <nav class="nav" aria-label="Main"><a href="index.html">Pipeline</a><a href="dossier.html">Loan dossier</a><a href="stress-test.html" class="bank-only">Stress testing</a><a href="settlement.html" aria-current="page" class="bank-only">Settlement &amp; export</a></nav>
+</div></header>
+<main class="wrap">
+ <div class="brk-note sec">Broker view: showing only clients referred by your brokerage (Harbour Mortgage Advisers). Portfolio metrics, stress testing and on-chain minting are hidden.</div>
+<section class="card sec broker-block"><h2>Not available in broker view</h2><p class="mut" style="margin-top:6px">This page is limited to bank underwriters. Switch to the Bank Underwriter view above to continue.</p></section><div class="bank-only">
+<div class="sh sec"><h2 style="font-size:22px">On-chain settlement &amp; decision export</h2><span class="mono mut">AL-2026-0418</span></div>
+<section class="card">
+ <div class="mut" style="margin-bottom:8px">SHA-256 decision hash</div>
+ <div class="hash"><span class="dot"></span><code class="mono">0x8f4a2c61d9e07b35a1c4f8820de6b7194c3aa5f0e2d81b6c70f9a4d3e5b193b2c</code><button class="btn sm" type="button">Copy hash</button></div>
+ <div class="acts"><button class="btn pri" type="button">Sign &amp; Mint Smart Contract Loan Note</button><button class="btn" type="button">Export PDF Audit Pack</button><button class="btn" type="button">Export CSV</button></div>
+</section>
+<section class="split">
+ <div class="card"><h2 style="margin-bottom:12px">Conditions before minting</h2>
+  <ul class="list"><li>Independent valuation at or above €425,000 <span class="badge b-ai">Pending</span></li><li>Proof of deposit source <span class="badge b-ai">Pending</span></li><li>Affordability and DTI check <span class="badge b-ok">Met</span></li><li>BER A2 certificate on file <span class="badge b-ok">Met</span></li></ul></div>
+ <div class="card"><h2 style="margin-bottom:12px">Mint transaction preview</h2>
+  <dl class="kv"><dt>Network</dt><dd>Polygon Amoy Testnet</dd><dt>Signer</dt><dd class="mono">0x71C...3A9</dd><dt>Contract</dt><dd class="mono">ALLoanNote (ERC-721)</dd><dt>Principal</dt><dd>€360,000</dd><dt>Est. gas</dd><dd>0.0042 MATIC</dd></dl></div>
+</section></div>
+ <footer>AL-Web · Prototype with sample data · Polygon Amoy Testnet, no real funds</footer>
+</main>
+
+</body>
+</html>

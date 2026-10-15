@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" data-role="bank">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stress testing | AL Agentic Lender Platform</title>
+<link rel="stylesheet" href="assets/css/styles.css">
+<script src="assets/js/role.js"></script>
+</head>
+<body>
+<header><div class="wrap">
+ <div class="top">
+  <div class="brand"><div class="logo">AL</div><div>AL <small>| Agentic Lender Platform</small></div></div>
+  <div class="wallet"><span class="dot"></span><span><b>Connected:</b> <span class="mono">0x71C...3A9</span></span><span class="mut">on</span><span style="color:#c4b5fd;font-weight:600">Polygon Amoy Testnet</span></div>
+ </div>
+ <div class="roles" role="group" aria-label="Role view">
+  <button type="button" data-role-btn="bank">Bank Underwriter View (Full Oversight)</button>
+  <button type="button" data-role-btn="broker">Mortgage Broker View (Referred Clients Only)</button>
+ </div>
+ <nav class="nav" aria-label="Main"><a href="index.html">Pipeline</a><a href="dossier.html">Loan dossier</a><a href="stress-test.html" aria-current="page" class="bank-only">Stress testing</a><a href="settlement.html" class="bank-only">Settlement &amp; export</a></nav>
+</div></header>
+<main class="wrap">
+ <div class="brk-note sec">Broker view: showing only clients referred by your brokerage (Harbour Mortgage Advisers). Portfolio metrics, stress testing and on-chain minting are hidden.</div>
+<section class="card sec broker-block"><h2>Not available in broker view</h2><p class="mut" style="margin-top:6px">This page is limited to bank underwriters. Switch to the Bank Underwriter view above to continue.</p></section><div class="bank-only">
+<div class="sh sec"><h2 style="font-size:22px">Macro stress-testing simulator</h2><span class="mut">Applied to the full €14.2M pipeline</span></div>
+<section class="card"><div class="sim">
+ <div>
+  <fieldset><legend><span>Interest rate shock</span><span class="mut">Baseline 3.85% → <b id="o-rate" style="color:var(--tx)"></b></span></legend>
+   <input type="range" id="ir" min="100" max="300" step="100" value="200" aria-label="Interest rate shock in basis points">
+   <div class="scale"><span>+100 bps</span><span>+200 bps</span><span>+300 bps</span></div></fieldset>
+  <fieldset><legend><span>Housing market downturn</span><span class="mut">Baseline HPI 100</span></legend>
+   <input type="range" class="rose" id="hm" min="5" max="15" step="5" value="10" aria-label="Housing market downturn percent">
+   <div class="scale"><span>-5%</span><span>-10%</span><span>-15%</span></div></fieldset>
+  <p class="mut" style="font-size:12px">Active scenario: <b id="o-bps" style="color:var(--am)"></b> rates, <b id="o-hpi" style="color:var(--rose)"></b> house prices.</p>
+ </div>
+ <div class="out">
+  <div><span class="mut">Projected default rate</span><b class="big" id="o-dr"></b><div class="mut" style="font-size:12px">vs 1.4% baseline</div></div>
+  <div><span class="mut">Portfolio stressed LTV</span><b class="big" id="o-ltv"></b><div class="mut" style="font-size:12px">vs 68.4% today</div></div>
+  <div style="grid-column:1/-1"><span class="mut">Loans breaching the 80% LTV cap</span><b class="big" id="o-br" style="font-size:20px"></b></div>
+ </div></div></section></div>
+ <footer>AL-Web · Prototype with sample data · Polygon Amoy Testnet, no real funds</footer>
+</main>
+<script src="assets/js/stress.js"></script>
+</body>
+</html>

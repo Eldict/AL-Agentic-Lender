@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" data-role="bank">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pipeline | AL Agentic Lender Platform</title>
+<link rel="stylesheet" href="assets/css/styles.css">
+<script src="assets/js/role.js"></script>
+</head>
+<body>
+<header><div class="wrap">
+ <div class="top">
+  <div class="brand"><div class="logo">AL</div><div>AL <small>| Agentic Lender Platform</small></div></div>
+  <div class="wallet"><span class="dot"></span><span><b>Connected:</b> <span class="mono">0x71C...3A9</span></span><span class="mut">on</span><span style="color:#c4b5fd;font-weight:600">Polygon Amoy Testnet</span></div>
+ </div>
+ <div class="roles" role="group" aria-label="Role view">
+  <button type="button" data-role-btn="bank">Bank Underwriter View (Full Oversight)</button>
+  <button type="button" data-role-btn="broker">Mortgage Broker View (Referred Clients Only)</button>
+ </div>
+ <nav class="nav" aria-label="Main"><a href="index.html" aria-current="page">Pipeline</a><a href="dossier.html">Loan dossier</a><a href="stress-test.html" class="bank-only">Stress testing</a><a href="settlement.html" class="bank-only">Settlement &amp; export</a></nav>
+</div></header>
+<main class="wrap">
+ <div class="brk-note sec">Broker view: showing only clients referred by your brokerage (Harbour Mortgage Advisers). Portfolio metrics, stress testing and on-chain minting are hidden.</div>
+<section class="kpis" aria-label="Key metrics">
+  <div class="card kpi"><div class="l">Active Pipeline Volume</div><div class="v">€14.2M</div><div class="d up">▲ 6.8% vs last month</div><div class="bar"><i style="width:72%;background:var(--ind)"></i></div></div>
+  <div class="card kpi"><div class="l">Avg. Loan-To-Value (LTV)</div><div class="v">68.4%</div><div class="d up">▼ 1.2 pts · inside 80% policy cap</div><div class="bar"><i style="width:68.4%;background:var(--sky)"></i></div></div>
+  <div class="card kpi"><div class="l">AI Deliberation Consensus Rate</div><div class="v">94.2%</div><div class="d up">▲ 2.1 pts · 4-agent agreement</div><div class="bar"><i style="width:94.2%;background:var(--em)"></i></div></div>
+  <div class="card kpi bank-only"><div class="l">On-Chain Minted Loan Notes</div><div class="v">42 <span style="font-size:16px;color:var(--mut);font-weight:500">Contracts</span></div><div class="d" style="color:#c4b5fd">3 minted this week</div><div class="bar"><i style="width:56%;background:#a78bfa"></i></div></div>
+ </section>
+
+ <section class="card sec" aria-labelledby="qh">
+  <div class="sh"><h2 id="qh">Origination pipeline</h2><span class="mut">5 applications · sorted by last activity</span></div>
+  <div class="tw"><table>
+   <thead><tr><th>Application ID</th><th>Borrower</th><th>Property Location</th><th>Loan Requested</th><th>ML Valuation</th><th>LTV</th><th>Risk Tier</th><th>Lifecycle Status</th><th>Actions</th></tr></thead>
+   <tbody>
+    <tr class="sel" data-src="broker"><td class="mono">AL-2026-0418</td><td>Aoife &amp; Cian Brennan</td><td>Dublin 4 · Semi-Detached</td><td>€360,000</td><td>€425,000</td><td>84.7%</td><td class="tier t-b">B</td><td><span class="badge b-ai">● AI Deliberated</span></td><td><a class="btn sm" href="dossier.html">Open dossier</a></td></tr>
+    <tr data-src="broker"><td class="mono">AL-2026-0412</td><td>Niamh Kearney</td><td>Cork City · Apartment</td><td>€248,000</td><td>€310,000</td><td>80.0%</td><td class="tier t-a">A</td><td><span class="badge b-ok">● Underwriter Approved</span></td><td><a class="btn sm" href="dossier.html">Open dossier</a></td></tr>
+    <tr data-src="direct"><td class="mono">AL-2026-0405</td><td>Declan Moriarty</td><td>Galway · Detached Bungalow</td><td>€295,000</td><td>€402,000</td><td>73.4%</td><td class="tier t-a">A</td><td><span class="badge b-fund">● Funded</span></td><td><a class="btn sm" href="dossier.html">Open dossier</a></td></tr>
+    <tr data-src="broker"><td class="mono">AL-2026-0421</td><td>Sinéad Okafor</td><td>Limerick · Terraced House</td><td>€212,000</td><td>€268,000</td><td>79.1%</td><td class="tier t-c">C</td><td><span class="badge b-app">● Applied</span></td><td><a class="btn sm" href="dossier.html">Open dossier</a></td></tr>
+    <tr data-src="direct"><td class="mono">AL-2026-0399</td><td>Tomás Gallagher</td><td>Dublin 8 · Duplex</td><td>€402,500</td><td>€521,000</td><td>77.3%</td><td class="tier t-b">B</td><td><span class="badge b-ai">● AI Deliberated</span></td><td><a class="btn sm" href="dossier.html">Open dossier</a></td></tr>
+   </tbody></table></div>
+ </section>
+
+ 
+ <footer>AL-Web · Prototype with sample data · Polygon Amoy Testnet, no real funds</footer>
+</main>
+
+</body>
+</html>

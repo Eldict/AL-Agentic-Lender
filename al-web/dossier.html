@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" data-role="bank">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Loan dossier | AL Agentic Lender Platform</title>
+<link rel="stylesheet" href="assets/css/styles.css">
+<script src="assets/js/role.js"></script>
+</head>
+<body>
+<header><div class="wrap">
+ <div class="top">
+  <div class="brand"><div class="logo">AL</div><div>AL <small>| Agentic Lender Platform</small></div></div>
+  <div class="wallet"><span class="dot"></span><span><b>Connected:</b> <span class="mono">0x71C...3A9</span></span><span class="mut">on</span><span style="color:#c4b5fd;font-weight:600">Polygon Amoy Testnet</span></div>
+ </div>
+ <div class="roles" role="group" aria-label="Role view">
+  <button type="button" data-role-btn="bank">Bank Underwriter View (Full Oversight)</button>
+  <button type="button" data-role-btn="broker">Mortgage Broker View (Referred Clients Only)</button>
+ </div>
+ <nav class="nav" aria-label="Main"><a href="index.html">Pipeline</a><a href="dossier.html" aria-current="page">Loan dossier</a><a href="stress-test.html" class="bank-only">Stress testing</a><a href="settlement.html" class="bank-only">Settlement &amp; export</a></nav>
+</div></header>
+<main class="wrap">
+ <div class="brk-note sec">Broker view: showing only clients referred by your brokerage (Harbour Mortgage Advisers). Portfolio metrics, stress testing and on-chain minting are hidden.</div>
+<div class="sh sec"><h2 style="font-size:22px">Loan file dossier · AL-2026-0418</h2><a class="btn sm" href="index.html">Back to pipeline</a></div><section class="split" style="margin-top:0" aria-label="Loan file dossier">
+  <div class="stack">
+   <div class="card">
+    <div class="sh"><h2>Collateral vs. ML valuation</h2><span class="mono mut">AL-2026-0418</span></div>
+    <div class="mut" style="margin-bottom:12px">Dublin 4 · Semi-Detached, Ballsbridge</div>
+    <div class="cmp">
+     <div><span class="mut">Seller Asking Price</span><b>€450,000</b></div>
+     <div style="border-color:rgba(52,211,153,.4)"><span class="mut">AVM Fair Value</span><b style="color:var(--em)">€425,000</b></div>
+    </div>
+    <div class="gap">⚠ Asking price is 5.9% (€25,000) above model fair value. Lending is capped on the lower figure.</div>
+    <div class="chips">
+     <span class="chip">🛏 3 Bedrooms</span><span class="chip">📐 112 sq m</span><span class="chip g">BER A2 · Green Mortgage Qualified</span>
+    </div>
+   </div>
+   <div class="card">
+    <h2 style="margin-bottom:14px">Borrower financial profile</h2>
+    <div class="fin">
+     <div><span class="mut">Household gross income</span><b>€118,000</b></div>
+     <div><span class="mut">Net monthly surplus</span><b>€1,860</b></div>
+     <div><span class="mut">Requested loan</span><b>€360,000</b></div>
+    </div>
+    <div style="margin-top:20px;display:flex;justify-content:space-between"><span class="mut">Debt-to-income (DTI)</span><b>31.4%</b></div>
+    <div class="bar" style="height:10px"><i style="width:31.4%;background:linear-gradient(90deg,var(--em),var(--sky))"></i></div>
+    <div class="scale"><span>0%</span><span>Policy limit 36%</span><span>50%</span></div>
+   </div>
+  </div>
+
+  <div class="card">
+   <div class="sh"><h2>AL-AI multi-agent audit console</h2><span class="badge b-fund">4 agents · deliberation complete</span></div>
+   <ul class="tl">
+    <li><div class="av" style="color:var(--em);border-color:rgba(52,211,153,.5)">AF</div>
+     <div class="ag"><b>Affordability Agent</b><span class="mono mut">09:14:02</span></div>
+     <div class="log">DTI computed at 31.4% on stressed rate of 6.0%. Net surplus of €1,860/mo covers repayment of €2,160 with 1.4x buffer after living costs. Result: PASS.</div>
+     <div class="conf"><span>Confidence 96%</span><div class="bar"><i style="width:96%;background:var(--em)"></i></div></div></li>
+    <li><div class="av" style="color:var(--am);border-color:rgba(251,191,36,.5)">VA</div>
+     <div class="ag"><b>Valuation Agent</b><span class="mono mut">09:14:19</span></div>
+     <div class="log">FLAG: AVM fair value €425,000 vs asking €450,000 (−5.9%). 6 comparable sales within 1.2 km support the lower figure. Recommend physical valuation before drawdown.</div>
+     <div class="conf"><span>Confidence 88%</span><div class="bar"><i style="width:88%;background:var(--am)"></i></div></div></li>
+    <li><div class="av" style="color:var(--sky);border-color:rgba(56,189,248,.5)">MI</div>
+     <div class="ag"><b>Market Intelligence Agent</b><span class="mono mut">09:14:31</span></div>
+     <div class="log">ECB deposit facility benchmark retrieved; 3-year fixed pricing spread within policy band. Dublin 4 prices +3.1% YoY, supply tight. Outlook neutral-to-stable.</div>
+     <div class="conf"><span>Confidence 91%</span><div class="bar"><i style="width:91%;background:var(--sky)"></i></div></div></li>
+    <li><div class="av" style="color:#c4b5fd;border-color:rgba(167,139,250,.5)">US</div>
+     <div class="ag"><b>Underwriting Strategist Agent</b><span class="mono mut">09:14:48</span></div>
+     <div class="log">Consensus memo: affordability strong; collateral gap manageable. Approve at 84.7% LTV on AVM basis, subject to (1) independent valuation and (2) proof of deposit source.</div>
+     <div class="conf"><span>Confidence 93%</span><div class="bar"><i style="width:93%;background:#a78bfa"></i></div></div></li>
+   </ul>
+   <div class="verdict"><div><div class="mut">Final decision consensus</div><div style="font-weight:700;font-size:18px">Conditionally Approved</div></div><div style="text-align:right"><span class="badge b-ok">4 of 4 agents aligned</span><div class="mut" style="margin-top:4px;font-size:12px">Avg. confidence 92%</div></div></div>
+  </div>
+ </section>
+
+ <div class="acts broker-hide"><a class="btn pri" href="settlement.html">Continue to settlement</a><a class="btn" href="stress-test.html">Run stress test</a></div>
+ <footer>AL-Web · Prototype with sample data · Polygon Amoy Testnet, no real funds</footer>
+</main>
+
+</body>
+</html>
