@@ -6,9 +6,9 @@ Year 3 Group Project 2026
 
 | Member | Primary Subsystem | Responsibilities |
 |---|---|---|
-| Kian Le Roux | AL-Web (React portal) | Broker & underwriter UI, system design, flow mapping |
+| Kian Le Roux | AL-Web (React portal) + Firebase | Broker & underwriter UI, Firebase setup (Firestore + Auth), system design, flow mapping, scrum master |
 | Rebecca Lordan | AL-Mobile (Android, Kotlin) | Borrower app, functional specs, screen design |
-| Eldict Koonan John | AL-Core & Ledger (Firebase + Blockchain) | Database, smart contracts, custom feature, project report |
+| Eldict Koonan John | AL-Core & Ledger (Blockchain) | Smart contracts, custom feature, project report, blockchain settlement |
 | Dimitar Bodurov | AL-AI Engine (Python) | ML valuation model, multi-agent AI committee, UI wireframes |
 
 ## Shared Responsibilities
@@ -31,24 +31,24 @@ Year 3 Group Project 2026
 
 ## Project Management & Documentation
 
-- **Trello:** https://trello.com/b/A6dYXHja (Week 3 tracking)
-- **Jira:** Migration planned for Sprint 1
+- **Jira:** https://benchodlender.atlassian.net/jira/software/projects/SCRUM/boards/1 (Active - Sprint 1 in progress)
+- **GitHub:** https://github.com/Eldict/AL-Agentic-Lender
 - **Confluence:** Project reports, meeting notes, and design docs
-- **GitHub:** Code repository + documentation storage
+- **Trello:** https://trello.com/b/A6dYXHja (Archived - migrated to Jira for Sprint 1)
 
 ## Infrastructure & Dev Environment
 
 | Purpose | Tool |
 |---|---|
-| Communication | Trello / Jira / Microsoft Teams |
+| Communication | Jira / Microsoft Teams / Discord |
 | Documentation | Confluence, Google Docs, Word, GitHub |
 | Code management | Git (via GitHub) |
 | Mobile development | Android Studio, Kotlin |
 | Web development | VS Code, React, Tailwind CSS |
 | Backend / AI | VS Code, Python (Flask/FastAPI), CrewAI / AutoGen / LangGraph |
-| Blockchain | Hardhat, Solidity, Ethers.js / Web3.py |
+| Blockchain | Hardhat, Solidity, Ethers.js |
 | Database / Auth | Firebase (Firestore + Auth) |
-| Testing | Manual QA + Jest (web), JUnit (mobile) |
+| Testing | Manual QA + Jest (web), JUnit (mobile), Hardhat (blockchain) |
 | Deployment | Firebase Hosting, Polygon Amoy / Arbitrum Sepolia testnet |
 
 ## Week 3 Deliverables (Due 4 Oct)
@@ -57,4 +57,13 @@ Year 3 Group Project 2026
 |---|---|
 | Product Backlog | Completed |
 | Mock-up / Prototype | Completed (mobile + desktop wireframes) |
-| Infrastructure outline | Completed (GitHub, Trello, dev environment plan) |
+| Infrastructure outline | Completed (GitHub, Jira, dev environment plan) |
+
+## Sprint 1 Progress (In Progress)
+
+| Member | Status |
+|---|---|
+| Kian | Firebase project set up, Jira board configured, starting React web portal |
+| Rebecca | Mobile screens created, PR #1 opened on GitHub |
+| Eldict | Hardhat environment set up, LoanNote.sol compiled with BER discount logic, pushed to `blockchain-setup` branch |
+| Dimitar | Jira backlog organised by epic, setting up Python environment for CrewAI agents |
