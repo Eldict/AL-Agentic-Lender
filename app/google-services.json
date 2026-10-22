@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "123456789012",
+    "firebase_url": "https://agentic-lender-default-rtdb.firebaseio.com",
+    "project_id": "agentic-lender",
+    "storage_bucket": "agentic-lender.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:123456789012:android:1234567890123456789012",
+        "android_client_info": {
+          "package_name": "com.example.agenticlender"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDummyKeyForBuildAndTestingPurposeOnly12345"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
