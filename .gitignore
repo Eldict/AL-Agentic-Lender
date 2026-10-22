@@ -1,3 +1,6 @@
+# IntelliJ IDEA / .idea folder
+.idea/
+
 # Built application files
 *.apk
 *.ap_
@@ -25,25 +28,6 @@ secrets.properties
 
 # Visual Studio Code files
 .vscode/
-
-# IntelliJ IDEA files
-.idea/caches/
-.idea/libraries/
-.idea/modules.xml
-.idea/workspace.xml
-.idea/navEditor.xml
-.idea/assetWizardSettings.xml
-.idea/codeStyles/
-.idea/perforceProfile.xml
-.idea/compiler.xml
-.idea/jarRepositories.xml
-.idea/runConfigurations/
-.idea/shelf/
-.idea/inspectionProfiles/profiles_settings.xml
-.idea/watcherTasks.xml
-*.iml
-*.iws
-*.ipr
 
 # Native build files
 .externalNativeBuild/
