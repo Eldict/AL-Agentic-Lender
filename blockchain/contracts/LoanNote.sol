@@ -8,6 +8,7 @@ contract LoanNote {
     struct Loan {
         address borrower;
         uint256 loanAmount;
+        uint256 termMonths; // how long the loan runs, in months
         uint256 apr; // in basis points. 500 = 5.00%, 475 = 4.75%
         string berRating;
         bytes32 auditHash; // fingerprint of the AI credit memo, proves it was not edited later
@@ -38,15 +39,18 @@ contract LoanNote {
     function mintLoan(
         address _borrower,
         uint256 _loanAmount,
+        uint256 _termMonths,
         string memory _berRating,
         bytes32 _auditHash
     ) public onlyOwner returns (uint256) {
+        require(_termMonths > 0, "Term must be at least 1 month");
         uint256 apr = calculateAPR(_berRating); //green discount is applied here
 
         loanCount++; //loan ids start at 1
         loans[loanCount] = Loan({
             borrower: _borrower,
             loanAmount: _loanAmount,
+            termMonths: _termMonths,
             apr: apr,
             berRating: _berRating,
             auditHash: _auditHash,
