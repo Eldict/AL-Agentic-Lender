@@ -6,6 +6,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.*
@@ -18,13 +19,16 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 @Composable
-fun ProfileScreen() {
+fun ProfileScreen(
+    onNavigateBack: () -> Unit = {}
+) {
     val auth = remember { FirebaseAuth.getInstance() }
     val db = remember { FirebaseFirestore.getInstance() }
     val currentUser = auth.currentUser
 
-    var fullName by remember { mutableStateOf("User Name") }
-    var email by remember { mutableStateOf(currentUser?.email ?: "username@gamil.com") }
+    var firstName by remember { mutableStateOf("") }
+    var lastName by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf(currentUser?.email ?: "") }
     var phone by remember { mutableStateOf("+61 412 345 678") }
     var dob by remember { mutableStateOf("15/08/2000") }
     var address by remember { mutableStateOf("MTU, Bishopstown, Cork, Ireland") }
@@ -38,7 +42,19 @@ fun ProfileScreen() {
             db.collection("users").document(uid).get()
                 .addOnSuccessListener { document ->
                     if (document.exists()) {
-                        fullName = document.getString("fullName") ?: fullName
+                        val fName = document.getString("firstName")
+                        val lName = document.getString("lastName")
+                        val full = document.getString("fullName") ?: ""
+
+                        if (!fName.isNullOrBlank()) {
+                            firstName = fName
+                            lastName = lName ?: ""
+                        } else if (full.isNotBlank()) {
+                            val parts = full.trim().split(" ", limit = 2)
+                            firstName = parts.getOrNull(0) ?: ""
+                            lastName = parts.getOrNull(1) ?: ""
+                        }
+
                         email = document.getString("email") ?: (currentUser.email ?: email)
                         phone = document.getString("phone") ?: phone
                         dob = document.getString("dob") ?: dob
@@ -54,6 +70,8 @@ fun ProfileScreen() {
         }
     }
 
+    val fullDisplayName = "$firstName $lastName".trim().ifBlank { "User Name" }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -61,12 +79,22 @@ fun ProfileScreen() {
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        // Header
-        Text(
-            text = "My Profile",
-            style = MaterialTheme.typography.headlineLarge,
-            color = MaterialTheme.colorScheme.primary
-        )
+        // Header with Back Button
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            IconButton(onClick = onNavigateBack) {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                    contentDescription = "Back"
+                )
+            }
+            Text(
+                text = "My Profile",
+                style = MaterialTheme.typography.headlineLarge,
+                color = MaterialTheme.colorScheme.primary
+            )
+        }
 
         if (isLoading) {
             Box(
@@ -104,7 +132,7 @@ fun ProfileScreen() {
                     Spacer(modifier = Modifier.width(16.dp))
                     Column(modifier = Modifier.weight(1f)) {
                         Text(
-                            text = fullName,
+                            text = fullDisplayName,
                             style = MaterialTheme.typography.titleLarge
                         )
                         Text(
@@ -138,13 +166,25 @@ fun ProfileScreen() {
                 color = MaterialTheme.colorScheme.primary
             )
 
-            OutlinedTextField(
-                value = fullName,
-                onValueChange = { fullName = it; isSaved = false },
-                label = { Text("Full Name") },
+            Row(
                 modifier = Modifier.fillMaxWidth(),
-                singleLine = true
-            )
+                horizontalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                OutlinedTextField(
+                    value = firstName,
+                    onValueChange = { firstName = it; isSaved = false },
+                    label = { Text("First Name") },
+                    modifier = Modifier.weight(1f),
+                    singleLine = true
+                )
+                OutlinedTextField(
+                    value = lastName,
+                    onValueChange = { lastName = it; isSaved = false },
+                    label = { Text("Last Name") },
+                    modifier = Modifier.weight(1f),
+                    singleLine = true
+                )
+            }
 
             OutlinedTextField(
                 value = email,
@@ -210,12 +250,15 @@ fun ProfileScreen() {
             Button(
                 onClick = {
                     currentUser?.uid?.let { uid ->
+                        val combinedFullName = "$firstName $lastName".trim()
                         val profileData = hashMapOf(
-                            "fullName" to fullName,
-                            "email" to email,
-                            "phone" to phone,
-                            "dob" to dob,
-                            "address" to address,
+                            "firstName" to firstName.trim(),
+                            "lastName" to lastName.trim(),
+                            "fullName" to combinedFullName,
+                            "email" to email.trim(),
+                            "phone" to phone.trim(),
+                            "dob" to dob.trim(),
+                            "address" to address.trim(),
                             "updatedAt" to com.google.firebase.Timestamp.now()
                         )
                         db.collection("users").document(uid)
