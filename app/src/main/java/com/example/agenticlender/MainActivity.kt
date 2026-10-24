@@ -38,8 +38,14 @@ fun MainFunction(modifier: Modifier = Modifier) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
-    // Show navigation bar only on main bottom tab screens
-    val showBottomBar = navItems.any { it.route == currentRoute }
+    // Show navigation bar on all main app screens once logged in
+    val authRoutes = listOf(
+        Screen.LandingScreen.route,
+        Screen.RegisterScreen.route,
+        Screen.LoginScreen.route,
+        Screen.CreateProfileScreen.route
+    )
+    val showBottomBar = currentRoute != null && currentRoute !in authRoutes
 
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -47,10 +53,11 @@ fun MainFunction(modifier: Modifier = Modifier) {
             if (showBottomBar) {
                 NavigationBar {
                     navItems.forEach { item ->
+                        val isSelected = currentRoute == item.route
                         NavigationBarItem(
-                            selected = currentRoute == item.route,
+                            selected = isSelected,
                             onClick = {
-                                if (currentRoute != item.route) {
+                                if (!isSelected) {
                                     navController.navigate(item.route) {
                                         popUpTo(Screen.UserDashboard.route) {
                                             saveState = true
@@ -88,6 +95,15 @@ fun MainFunction(modifier: Modifier = Modifier) {
                 RegisterScreen(
                     onNavigateToLogin = { navController.navigate(Screen.LoginScreen.route) },
                     onNavigateToCreateAccount = {
+                        navController.navigate(Screen.CreateProfileScreen.route) {
+                            popUpTo(Screen.LandingScreen.route) { inclusive = true }
+                        }
+                    }
+                )
+            }
+            composable(Screen.CreateProfileScreen.route) {
+                CreateProfileScreen(
+                    onProfileCreated = {
                         navController.navigate(Screen.UserDashboard.route) {
                             popUpTo(Screen.LandingScreen.route) { inclusive = true }
                         }
@@ -138,19 +154,19 @@ fun MainFunction(modifier: Modifier = Modifier) {
                     }
                 )
             }
-            composable(Screen.ProfileScreen.route) { ProfileScreen() }
-            composable(Screen.SettingsScreen.route) { SettingsScreen() }
-            composable(Screen.HelpScreen.route) { HelpScreen() }
-            composable(Screen.PaymentScreen.route) { PaymentScreen() }
+            composable(Screen.ProfileScreen.route) { ProfileScreen(onNavigateBack = { navController.popBackStack() }) }
+            composable(Screen.SettingsScreen.route) { SettingsScreen(onNavigateBack = { navController.popBackStack() }) }
+            composable(Screen.HelpScreen.route) { HelpScreen(onNavigateBack = { navController.popBackStack() }) }
+            composable(Screen.PaymentScreen.route) { PaymentScreen(onNavigateBack = { navController.popBackStack() }) }
 
-            composable(Screen.PersonalDetailsScreen.route) { PersonalDetailsScreen() }
-            composable(Screen.EmploymentAndIncomeScreen.route) { EmploymentAndIncomeScreen() }
-            composable(Screen.DebtsAndCommitmentsScreen.route) { DebtsAndCommitmentsScreen() }
-            composable(Screen.DepositAndAssetsScreen.route) { DepositAndAssetsScreen() }
-            composable(Screen.LoanRequestScreen.route) { LoanRequestScreen() }
-            composable(Screen.PropertyDetailsScreen.route) { PropertyDetailsScreen() }
-            composable(Screen.DocumentUploadScreen.route) { DocumentUploadScreen() }
-            composable(Screen.ConsentAndDeclarationsScreen.route) { ConsentAndDeclarationsScreen() }
+            composable(Screen.PersonalDetailsScreen.route) { PersonalDetailsScreen(onNavigateBack = { navController.popBackStack() }) }
+            composable(Screen.EmploymentAndIncomeScreen.route) { EmploymentAndIncomeScreen(onNavigateBack = { navController.popBackStack() }) }
+            composable(Screen.DebtsAndCommitmentsScreen.route) { DebtsAndCommitmentsScreen(onNavigateBack = { navController.popBackStack() }) }
+            composable(Screen.DepositAndAssetsScreen.route) { DepositAndAssetsScreen(onNavigateBack = { navController.popBackStack() }) }
+            composable(Screen.LoanRequestScreen.route) { LoanRequestScreen(onNavigateBack = { navController.popBackStack() }) }
+            composable(Screen.PropertyDetailsScreen.route) { PropertyDetailsScreen(onNavigateBack = { navController.popBackStack() }) }
+            composable(Screen.DocumentUploadScreen.route) { DocumentUploadScreen(onNavigateBack = { navController.popBackStack() }) }
+            composable(Screen.ConsentAndDeclarationsScreen.route) { ConsentAndDeclarationsScreen(onNavigateBack = { navController.popBackStack() }) }
         }
     }
 }
