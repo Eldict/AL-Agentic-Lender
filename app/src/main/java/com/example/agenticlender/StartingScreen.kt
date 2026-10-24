@@ -1,19 +1,24 @@
 package com.example.agenticlender
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -23,6 +28,9 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import com.google.firebase.auth.FirebaseAuth
@@ -40,6 +48,22 @@ fun LandingScreen(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        // App Logo
+        Surface(
+            modifier = Modifier.size(100.dp),
+            color = MaterialTheme.colorScheme.primaryContainer,
+            shadowElevation = 4.dp
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.logo),
+                contentDescription = "Agentic Lender Logo",
+                contentScale = ContentScale.Fit,
+                modifier = Modifier
+                    .size(160.dp)
+            )
+        }
+        Spacer(modifier = Modifier.height(24.dp))
+
         Text(
             text = "Agentic Lender",
             style = MaterialTheme.typography.headlineLarge,
@@ -77,9 +101,9 @@ fun RegisterScreen(
     onNavigateToLogin: () -> Unit = {},
     onNavigateToCreateAccount: () -> Unit = {}
 ) {
-    var fullName by rememberSaveable { mutableStateOf("") }
+    var firstName by rememberSaveable { mutableStateOf("") }
+    var lastName by rememberSaveable { mutableStateOf("") }
     var email by rememberSaveable { mutableStateOf("") }
-    var mobile by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
     var confirmPassword by rememberSaveable { mutableStateOf("") }
     var errorMessage by rememberSaveable { mutableStateOf<String?>(null) }
@@ -105,28 +129,31 @@ fun RegisterScreen(
         )
         Spacer(modifier = Modifier.height(24.dp))
 
-        OutlinedTextField(
-            value = fullName,
-            onValueChange = { fullName = it },
-            label = { Text("Full Name") },
-            singleLine = true,
-            modifier = Modifier.fillMaxWidth()
-        )
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            OutlinedTextField(
+                value = firstName,
+                onValueChange = { firstName = it },
+                label = { Text("First Name") },
+                singleLine = true,
+                modifier = Modifier.weight(1f)
+            )
+            OutlinedTextField(
+                value = lastName,
+                onValueChange = { lastName = it },
+                label = { Text("Last Name") },
+                singleLine = true,
+                modifier = Modifier.weight(1f)
+            )
+        }
         Spacer(modifier = Modifier.height(12.dp))
 
         OutlinedTextField(
             value = email,
             onValueChange = { email = it },
             label = { Text("Email Address") },
-            singleLine = true,
-            modifier = Modifier.fillMaxWidth()
-        )
-        Spacer(modifier = Modifier.height(12.dp))
-
-        OutlinedTextField(
-            value = mobile,
-            onValueChange = { mobile = it },
-            label = { Text("Mobile Number") },
             singleLine = true,
             modifier = Modifier.fillMaxWidth()
         )
@@ -163,7 +190,7 @@ fun RegisterScreen(
 
         Button(
             onClick = {
-                if (fullName.isBlank() || email.isBlank() || password.isBlank()) {
+                if (firstName.isBlank() || email.isBlank() || password.isBlank()) {
                     errorMessage = "Please fill in all required fields."
                     return@Button
                 }
@@ -180,9 +207,10 @@ fun RegisterScreen(
                         if (task.isSuccessful) {
                             val userId = FirebaseAuth.getInstance().currentUser?.uid ?: ""
                             val userMap = hashMapOf(
-                                "fullName" to fullName.trim(),
-                                "email" to email.trim(),
-                                "mobile" to mobile.trim()
+                                "firstName" to firstName.trim(),
+                                "lastName" to lastName.trim(),
+                                "fullName" to "$firstName $lastName".trim(),
+                                "email" to email.trim()
                             )
                             if (userId.isNotEmpty()) {
                                 FirebaseFirestore.getInstance().collection("users").document(userId)
