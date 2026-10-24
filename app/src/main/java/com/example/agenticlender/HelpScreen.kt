@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.HelpOutline
 import androidx.compose.material.icons.filled.Call
 import androidx.compose.material.icons.filled.Email
@@ -15,7 +16,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun HelpScreen() {
+fun HelpScreen(
+    onNavigateBack: () -> Unit = {}
+) {
     var searchQuery by remember { mutableStateOf("") }
 
     Column(
@@ -25,11 +28,21 @@ fun HelpScreen() {
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        Text(
-            text = "Help & Support",
-            style = MaterialTheme.typography.headlineLarge,
-            color = MaterialTheme.colorScheme.primary
-        )
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            IconButton(onClick = onNavigateBack) {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                    contentDescription = "Back"
+                )
+            }
+            Text(
+                text = "Help & Support",
+                style = MaterialTheme.typography.headlineLarge,
+                color = MaterialTheme.colorScheme.primary
+            )
+        }
 
         // Search Bar
         OutlinedTextField(
@@ -60,7 +73,7 @@ fun HelpScreen() {
                     color = MaterialTheme.colorScheme.onPrimaryContainer
                 )
                 Text(
-                    text = "Senior Home Loan Specialist • License #48102",
+                    text = "Home Loan Specialist • License #12345",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.8f)
                 )
@@ -83,7 +96,7 @@ fun HelpScreen() {
                     ) {
                         Icon(imageVector = Icons.Default.Email, contentDescription = null, modifier = Modifier.size(18.dp))
                         Spacer(modifier = Modifier.width(4.dp))
-                        Text("Email Broker")
+                        Text("Message Broker")
                     }
                 }
             }
@@ -113,7 +126,7 @@ fun HelpScreen() {
 
         FaqCard(
             question = "Can I change my requested loan amount later?",
-            answer = "Yes! You can update your loan request details with your broker anytime before formal unconditional approval."
+            answer = "Yes, You can update your loan request details with your broker anytime BEFORE formal unconditional approval."
         )
 
         Spacer(modifier = Modifier.height(8.dp))
@@ -132,7 +145,7 @@ fun HelpScreen() {
                     Column {
                         Text(text = "Customer Support", style = MaterialTheme.typography.titleSmall)
                         Text(
-                            text = "1800-AGENTIC (Mon-Fri 8am-8pm AEST)",
+                            text = "1234-AGENTIC (Mon-Fri 8am-8pm)",
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
