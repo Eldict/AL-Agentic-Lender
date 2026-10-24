@@ -2,9 +2,17 @@ package com.example.agenticlender
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -31,79 +39,148 @@ fun ApplicationScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(text = "Your Application", style = MaterialTheme.typography.headlineLarge)
-        Text(text = "Your answers save automatically, so you can return at any time")
-        //show a loading bar of the application progress
-        Button(onClick = onNavigateToPersonalDetails) {
+        Text(
+            text = "Your answers save automatically, so you can return at any time",
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        Button(onClick = onNavigateToPersonalDetails, modifier = Modifier.fillMaxWidth()) {
             Text(text = "1. Personal and Household Details")
         }
-        Button(onClick = onNavigateToEmployment) {
+        Spacer(modifier = Modifier.height(8.dp))
+        Button(onClick = onNavigateToEmployment, modifier = Modifier.fillMaxWidth()) {
             Text(text = "2. Employment and Income")
         }
-        Button(onClick = onNavigateToDebtsAndCommitments) {
+        Spacer(modifier = Modifier.height(8.dp))
+        Button(onClick = onNavigateToDebtsAndCommitments, modifier = Modifier.fillMaxWidth()) {
             Text(text = "3. Existing Debts and Commitments")
         }
-        Button(onClick = onNavigateToDepositAndAssets){
+        Spacer(modifier = Modifier.height(8.dp))
+        Button(onClick = onNavigateToDepositAndAssets, modifier = Modifier.fillMaxWidth()) {
             Text(text = "4. Deposit and Assets")
         }
-        Button(onClick = onNavigateToLoanRequest) {
+        Spacer(modifier = Modifier.height(8.dp))
+        Button(onClick = onNavigateToLoanRequest, modifier = Modifier.fillMaxWidth()) {
             Text(text = "5. Loan Request")
         }
-        Button(onClick = onNavigateToPropertyDetails) {
+        Spacer(modifier = Modifier.height(8.dp))
+        Button(onClick = onNavigateToPropertyDetails, modifier = Modifier.fillMaxWidth()) {
             Text(text = "6. Property Details")
         }
-        Button(onClick = onNavigateToUpload) {
+        Spacer(modifier = Modifier.height(8.dp))
+        Button(onClick = onNavigateToUpload, modifier = Modifier.fillMaxWidth()) {
             Text(text = "7. Document Upload Screen")
         }
-        Button(onClick = onNavigateToConsent) {
+        Spacer(modifier = Modifier.height(8.dp))
+        Button(onClick = onNavigateToConsent, modifier = Modifier.fillMaxWidth()) {
             Text(text = "8. Consent and Declarations")
         }
-        //change the number to a check once they have completed it
-        //under the headings put complete, in progress or not started
-        Text(text = "Your information is secure")
-        Text(text = "Protected with bank-level encryption and only visible to authorised viewers")
+        Spacer(modifier = Modifier.height(16.dp))
+        Text(
+            text = "Your information is secure",
+            style = MaterialTheme.typography.labelLarge
+        )
+        Text(
+            text = "Protected with bank-level encryption and only visible to authorised viewers",
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant
+        )
     }
 }
 
-// Loan Application Screens
 @Composable
-fun PersonalDetailsScreen() {
-    Text(text = "Personal Details Screen")
+private fun SubScreenHeader(
+    title: String,
+    onNavigateBack: () -> Unit
+) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        IconButton(onClick = onNavigateBack) {
+            Icon(
+                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                contentDescription = "Back"
+            )
+        }
+        Text(
+            text = title,
+            style = MaterialTheme.typography.headlineMedium,
+            color = MaterialTheme.colorScheme.primary
+        )
+    }
+}
+
+// Loan Application Sub-Screens
+@Composable
+fun PersonalDetailsScreen(onNavigateBack: () -> Unit = {}) {
+    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+        SubScreenHeader("Personal Details", onNavigateBack)
+        Spacer(modifier = Modifier.height(16.dp))
+        Text("Personal Details Screen Content")
+    }
 }
 
 @Composable
-fun EmploymentAndIncomeScreen() {
-    Text(text = "Employment and Income Screen")
+fun EmploymentAndIncomeScreen(onNavigateBack: () -> Unit = {}) {
+    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+        SubScreenHeader("Employment & Income", onNavigateBack)
+        Spacer(modifier = Modifier.height(16.dp))
+        Text("Employment and Income Screen Content")
+    }
 }
 
 @Composable
-fun DebtsAndCommitmentsScreen() {
-    Text(text = "Debts and Commitments Screen")
+fun DebtsAndCommitmentsScreen(onNavigateBack: () -> Unit = {}) {
+    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+        SubScreenHeader("Debts & Commitments", onNavigateBack)
+        Spacer(modifier = Modifier.height(16.dp))
+        Text("Existing Debts and Commitments Screen Content")
+    }
 }
 
 @Composable
-fun DepositAndAssetsScreen() {
-    Text(text = "Deposit and Assets Screen")
-}
-@Composable
-fun LoanRequestScreen() {
-    Text(text = "Loan Request Screen")
-}
-
-@Composable
-fun PropertyDetailsScreen() {
-    Text(text = "Property Details Screen")
+fun DepositAndAssetsScreen(onNavigateBack: () -> Unit = {}) {
+    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+        SubScreenHeader("Deposit & Assets", onNavigateBack)
+        Spacer(modifier = Modifier.height(16.dp))
+        Text("Deposit and Assets Screen Content")
+    }
 }
 
 @Composable
-fun DocumentUploadScreen() {
-    Text(text = "Document Upload Screen")
+fun LoanRequestScreen(onNavigateBack: () -> Unit = {}) {
+    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+        SubScreenHeader("Loan Request", onNavigateBack)
+        Spacer(modifier = Modifier.height(16.dp))
+        Text("Loan Request Screen Content")
+    }
 }
 
 @Composable
-fun ConsentAndDeclarationsScreen() {
-    Text(text = "Consent and Declarations Screen")
+fun PropertyDetailsScreen(onNavigateBack: () -> Unit = {}) {
+    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+        SubScreenHeader("Property Details", onNavigateBack)
+        Spacer(modifier = Modifier.height(16.dp))
+        Text("Property Details Screen Content")
+    }
 }
 
+@Composable
+fun DocumentUploadScreen(onNavigateBack: () -> Unit = {}) {
+    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+        SubScreenHeader("Document Upload", onNavigateBack)
+        Spacer(modifier = Modifier.height(16.dp))
+        Text("Document Upload Screen Content")
+    }
+}
 
-
-
+@Composable
+fun ConsentAndDeclarationsScreen(onNavigateBack: () -> Unit = {}) {
+    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+        SubScreenHeader("Consent & Declarations", onNavigateBack)
+        Spacer(modifier = Modifier.height(16.dp))
+        Text("Consent and Declarations Screen Content")
+    }
+}
