@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.CreditCard
 import androidx.compose.material3.*
@@ -13,7 +14,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun PaymentScreen() {
+fun PaymentScreen(
+    onNavigateBack: () -> Unit = {}
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -21,11 +24,21 @@ fun PaymentScreen() {
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        Text(
-            text = "Payments & Fees",
-            style = MaterialTheme.typography.headlineLarge,
-            color = MaterialTheme.colorScheme.primary
-        )
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            IconButton(onClick = onNavigateBack) {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                    contentDescription = "Back"
+                )
+            }
+            Text(
+                text = "Payments & Fees",
+                style = MaterialTheme.typography.headlineLarge,
+                color = MaterialTheme.colorScheme.primary
+            )
+        }
 
         // Payment Summary Overview Card
         Card(
@@ -46,7 +59,7 @@ fun PaymentScreen() {
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(text = "Property Valuation Fee", style = MaterialTheme.typography.bodyMedium)
-                    Text(text = "$250.00", style = MaterialTheme.typography.bodyMedium)
+                    Text(text = "€0.00", style = MaterialTheme.typography.bodyMedium)
                 }
                 Spacer(modifier = Modifier.height(4.dp))
                 Row(
@@ -54,7 +67,7 @@ fun PaymentScreen() {
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(text = "Loan Establishment Fee", style = MaterialTheme.typography.bodyMedium)
-                    Text(text = "$0.00 (Waived)", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.primary)
+                    Text(text = "€0.00", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.primary)
                 }
                 HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
                 Row(
@@ -62,7 +75,7 @@ fun PaymentScreen() {
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(text = "Total Paid to Date", style = MaterialTheme.typography.titleSmall)
-                    Text(text = "$250.00", style = MaterialTheme.typography.titleSmall)
+                    Text(text = "€0.00", style = MaterialTheme.typography.titleSmall)
                 }
             }
         }
@@ -88,9 +101,9 @@ fun PaymentScreen() {
                     )
                     Spacer(modifier = Modifier.width(16.dp))
                     Column(modifier = Modifier.weight(1f)) {
-                        Text(text = "ANZ Bank (Direct Debit)", style = MaterialTheme.typography.titleSmall)
+                        Text(text = "Bank", style = MaterialTheme.typography.titleSmall)
                         Text(
-                            text = "Account ending in **** 4829",
+                            text = "Account ending in **** 1234",
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
@@ -152,15 +165,15 @@ fun PaymentScreen() {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Column {
-                        Text(text = "Property Valuation Fee", style = MaterialTheme.typography.bodyLarge)
+                        Text(text = "Fee", style = MaterialTheme.typography.bodyLarge)
                         Text(
-                            text = "12 Oct 2024 • Visa **** 1234",
+                            text = "12 Oct 2025 • Visa **** 1234",
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }
                     Text(
-                        text = "$250.00",
+                        text = "€0.00",
                         style = MaterialTheme.typography.titleMedium
                     )
                 }
