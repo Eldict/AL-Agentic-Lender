@@ -4,18 +4,46 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 @Composable
 fun UserDashboard(
-    userName: String = "User",
     onNavigateToApplication: () -> Unit = {},
     onNavigateToMessages: () -> Unit = {},
     onNavigateToDocuments: () -> Unit = {}
 ) {
+    val auth = remember { FirebaseAuth.getInstance() }
+    val db = remember { FirebaseFirestore.getInstance() }
+    val currentUser = auth.currentUser
+
+    var fetchedName by remember { mutableStateOf("") }
+
+    LaunchedEffect(currentUser?.uid) {
+        currentUser?.uid?.let { uid ->
+            db.collection("users").document(uid).get()
+                .addOnSuccessListener { document ->
+                    if (document.exists()) {
+                        val first = document.getString("firstName")
+                        val full = document.getString("fullName")
+                        fetchedName = when {
+                            !first.isNullOrBlank() -> first
+                            !full.isNullOrBlank() -> full.substringBefore(" ")
+                            else -> currentUser.email?.substringBefore("@")?.replaceFirstChar { it.uppercase() } ?: ""
+                        }
+                    } else if (currentUser.email != null) {
+                        fetchedName = currentUser.email!!.substringBefore("@").replaceFirstChar { it.uppercase() }
+                    }
+                }
+        }
+    }
+
+    val displayName = fetchedName.ifBlank { "User" }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -31,7 +59,7 @@ fun UserDashboard(
                 color = MaterialTheme.colorScheme.secondary
             )
             Text(
-                text = "Welcome back, $userName!",
+                text = "Welcome back, $displayName!",
                 style = MaterialTheme.typography.headlineLarge,
                 color = MaterialTheme.colorScheme.primary
             )
@@ -111,7 +139,7 @@ fun UserDashboard(
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                         Text(
-                            text = "$",
+                            text = "€",
                             style = MaterialTheme.typography.headlineMedium,
                             color = MaterialTheme.colorScheme.onSurface
                         )
@@ -123,7 +151,7 @@ fun UserDashboard(
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                         Text(
-                            text = "$ a month",
+                            text = "€ a month",
                             style = MaterialTheme.typography.headlineMedium,
                             color = MaterialTheme.colorScheme.onSurface
                         )
