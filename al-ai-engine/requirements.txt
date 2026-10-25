@@ -1,0 +1,20 @@
+# Core (numbers-only mode needs only these)
+rich==15.0.0
+pydantic==2.14.1
+PyYAML==6.0.3
+python-dotenv==1.2.4
+scikit-learn==1.9.1
+pandas==3.0.6
+numpy==2.5.4
+joblib==1.6.0
+
+# LLM providers (each is optional at runtime: missing key/server -> skipped)
+ollama==0.6.3
+groq==1.7.0
+google-genai==2.32.0
+
+# Firestore (only for --firestore / --list / --write-back)
+firebase-admin==7.7.0
+
+# Tests
+pytest==9.1.1

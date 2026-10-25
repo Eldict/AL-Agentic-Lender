@@ -1,0 +1,28 @@
+{
+  "as_of": "2026-10-01",
+  "source_note": "PROTOTYPE: hand-written static figures for the demo. Edit by hand; replace with CSO / Daft.ie / PPR figures before relying on them.",
+  "national": {
+    "annual_price_change_pct": 6.5,
+    "note": "Prices still rising nationally, driven by limited housing supply."
+  },
+  "interest_rates": {
+    "ecb_deposit_rate_pct": 2.0,
+    "typical_new_mortgage_rate_pct": 3.9,
+    "note": "Rates have eased from their 2023 peak; fixed rates are generally cheaper than variable."
+  },
+  "counties": {
+    "Dublin":    {"annual_price_change_pct": 5.0, "median_price": 465000, "note": "Strong demand; apartments rising more slowly than houses."},
+    "Cork":      {"annual_price_change_pct": 7.5, "median_price": 340000, "note": "City and commuter belt rising fast."},
+    "Galway":    {"annual_price_change_pct": 7.0, "median_price": 330000, "note": "Tight supply in the city."},
+    "Kildare":   {"annual_price_change_pct": 6.0, "median_price": 380000, "note": "Dublin commuter demand."},
+    "Meath":     {"annual_price_change_pct": 6.0, "median_price": 360000, "note": "Dublin commuter demand."},
+    "Wicklow":   {"annual_price_change_pct": 5.5, "median_price": 450000, "note": "High prices near the Dublin border."},
+    "Limerick":  {"annual_price_change_pct": 8.0, "median_price": 280000, "note": "Strong growth from a lower base."},
+    "Louth":     {"annual_price_change_pct": 7.0, "median_price": 300000, "note": "M1 corridor demand."},
+    "Waterford": {"annual_price_change_pct": 7.5, "median_price": 270000, "note": "Steady growth."},
+    "Kerry":     {"annual_price_change_pct": 6.5, "median_price": 260000, "note": "Holiday-home demand in some areas."},
+    "Mayo":      {"annual_price_change_pct": 8.5, "median_price": 210000, "note": "Lower prices, fast percentage growth."},
+    "Donegal":   {"annual_price_change_pct": 9.0, "median_price": 190000, "note": "Lowest prices; mica-affected properties need extra checks."},
+    "Leitrim":   {"annual_price_change_pct": 9.5, "median_price": 170000, "note": "Small market; few sales, so trends are noisy."}
+  }
+}

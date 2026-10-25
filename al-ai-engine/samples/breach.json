@@ -1,0 +1,25 @@
+{
+  "_comment": "JSON has no comments, so notes go in _comment fields (the engine ignores them)",
+  "_as_is": "result: DECLINE (DTI 44% and LTI 4.93x are over the limits)",
+  "_to_approve": "change income amount from 1346 to 2200 -> APPROVE (DTI 27%, LTI 3.07x)",
+  "_to_not_approve": "after that, add a debt {\"type\": \"car finance\", \"monthly_repayment\": 900} -> REFER (DTI 36.6% is over 35%)",
+
+  "application_id": "SAMPLE-003",
+  "loan_type": "mortgage",
+  "status": "Submitted",
+  "ai_consent": true,
+  "borrower": {"first_name": "Sean", "household_status": "single", "dependants": 0,
+               "first_time_buyer": false, "joint_application": false},
+  "income": {"employment_type": "salaried", "amount": 1346, "frequency": "weekly",
+             "other_income": 3000, "other_income_frequency": "yearly"},
+  "debts": [{"type": "personal loan", "monthly_repayment": 450},
+            {"type": "car finance", "monthly_repayment": 380},
+            {"type": "credit card", "monthly_repayment": 150}],
+  "no_existing_debts": false,
+  "deposit": {"amount": 90000, "gifted_amount": 0, "savings": 5000},
+  "loan": {"amount": 360000, "term_years": 30, "interest_rate_pct": 3.9,
+           "rate_type": "fixed", "repayment_type": "capital and interest"},
+  "property": {"property_type": "apartment", "floor_area_m2": 75, "bedrooms": 2, "bathrooms": 1,
+               "year_built": 2005, "ber_rating": "C2", "county": "Dublin", "area": "Rathmines",
+               "asking_price": 450000}
+}

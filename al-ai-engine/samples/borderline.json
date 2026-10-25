@@ -1,0 +1,18 @@
+{
+  "application_id": "SAMPLE-002",
+  "loan_type": "mortgage",
+  "status": "Submitted",
+  "ai_consent": true,
+  "borrower": {"first_name": "Cian", "household_status": "single", "dependants": 0,
+               "first_time_buyer": true, "joint_application": false},
+  "income": {"employment_type": "salaried", "amount": 6667, "frequency": "monthly",
+             "other_income": 0, "other_income_frequency": "yearly"},
+  "debts": [{"type": "car finance", "monthly_repayment": 250}],
+  "no_existing_debts": false,
+  "deposit": {"amount": 66000, "gifted_amount": 25000, "gift_source": "parents", "savings": 4000},
+  "loan": {"amount": 264000, "term_years": 30, "interest_rate_pct": 4.0,
+           "rate_type": "variable", "repayment_type": "capital and interest"},
+  "property": {"property_type": "terraced", "floor_area_m2": 85, "bedrooms": 3, "bathrooms": 1,
+               "year_built": 1975, "ber_rating": "D1", "county": "Cork", "area": "Ballincollig",
+               "asking_price": 330000}
+}

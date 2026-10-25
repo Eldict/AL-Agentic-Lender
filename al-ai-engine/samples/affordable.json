@@ -1,0 +1,18 @@
+{
+  "application_id": "SAMPLE-001",
+  "loan_type": "mortgage",
+  "status": "Submitted",
+  "ai_consent": true,
+  "borrower": {"first_name": "Aoife", "household_status": "married", "dependants": 1,
+               "first_time_buyer": true, "joint_application": true},
+  "income": {"employment_type": "salaried", "amount": 55000, "frequency": "yearly",
+             "other_income": 0, "other_income_frequency": "yearly", "co_applicant_yearly": 40000},
+  "debts": [{"type": "car finance", "monthly_repayment": 200}],
+  "no_existing_debts": false,
+  "deposit": {"amount": 94000, "gifted_amount": 0, "savings": 12000},
+  "loan": {"amount": 376000, "term_years": 30, "interest_rate_pct": 3.9,
+           "rate_type": "fixed", "repayment_type": "capital and interest"},
+  "property": {"property_type": "semi-detached", "floor_area_m2": 120, "bedrooms": 3, "bathrooms": 2,
+               "year_built": 2018, "ber_rating": "A2", "county": "Galway", "area": "Knocknacarra",
+               "asking_price": 470000}
+}

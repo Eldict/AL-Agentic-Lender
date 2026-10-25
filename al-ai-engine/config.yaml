@@ -1,0 +1,45 @@
+# AL-AI Engine settings.
+# Thresholds are prototype defaults: check against Central Bank of Ireland rules.
+# A Firestore risk settings doc overrides them if it exists.
+
+thresholds:
+  max_lti_first_time_buyer: 4.0     # loan / gross yearly income
+  max_lti_second_time_buyer: 3.5
+  max_ltv: 0.90                     # loan / min(asking price, estimated value)
+  max_dti: 0.35                     # (existing debts + new repayment) / gross monthly income
+  overvaluation_limit: 0.10         # asking price above estimate by more than this -> warning
+  stress_buffer_pct_points: 2.0     # stress test rate = rate + this
+
+assumptions:
+  default_interest_rate_pct: 4.0    # used when the application gives no rate
+  default_term_years: 30            # used when the application gives no term
+  effective_tax_rate: 0.30          # rough gross -> net for disposable income (prototype)
+  living_cost_single: 1200          # monthly, euro (prototype)
+  living_cost_couple: 1800
+  living_cost_per_dependant: 400
+
+# LLMs, tried in this order
+# a provider with no key or no server is skipped
+llm:
+  timeout_seconds: 60
+  providers:
+    - name: ollama
+      enabled: true
+      model: llama3
+    - name: groq
+      enabled: true
+      model: openai/gpt-oss-20b      # free; Groq's free plan has no Llama models (Oct 2026)
+    - name: gemini
+      enabled: true
+      model: gemini-3.5-flash-lite   # free tier; gemini-3.8-flash also free (checked Oct 2026)
+
+valuation:
+  model_path: models/valuation.joblib
+
+market:
+  context_path: data/market_context.json
+
+firestore:
+  applications_collection: applications
+  settings_document: settings/riskThresholds   # collection/document
+  assessments_subcollection: aiAssessments
