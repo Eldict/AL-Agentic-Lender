@@ -365,7 +365,10 @@ fun DepositAndAssetsScreen(onNavigateBack: () -> Unit = {}) {
 }
 
 @Composable
-fun LoanRequestScreen(onNavigateBack: () -> Unit = {}) {
+fun LoanRequestScreen(
+    onNavigateNext: () -> Unit = {},
+    onNavigateBack: () -> Unit = {}
+) {
     Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
         SubScreenHeader("5. Loan Request", onNavigateBack)
         Spacer(modifier = Modifier.height(16.dp))
